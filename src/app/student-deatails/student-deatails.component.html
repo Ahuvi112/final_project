@@ -1,0 +1,28 @@
+<h2>פרטי סטודנט</h2>
+
+<div *ngIf="student">
+    <form>
+        <label>מספר תעודת זהות:</label>
+        <input type="number" [(ngModel)]="student.id" required />
+
+        <label>שם פרטי:</label>
+        <input type="text" [(ngModel)]="student.firstName" required />
+
+        <label>שם משפחה:</label>
+        <input type="text" [(ngModel)]="student.lastName" required />
+
+        <label>כתובת:</label>
+        <input type="text" [(ngModel)]="student.addres" required />
+
+        <label>טלפון:</label>
+        <input type="number" [(ngModel)]="student.phone" required />
+
+        <label>פעיל:</label>
+        <input type="checkbox" [(ngModel)]="student.active" />
+
+        <label>ממוצע ציונים:</label>
+        <input type="number" [(ngModel)]="student.avgMarks" required />
+
+        <button (submit)="saveStudent()">שמירה</button>
+    </form>
+</div>

@@ -1,0 +1,19 @@
+<!-- <div *ngFor="let s of students">
+    <p>{{s.firstName}}</p>
+    <p *ngIf="!s.active">not active</p>
+    <p *ngIf="s.avgMarks > 90"><mark>your marks are higher then the avarage</mark></p>
+    <button (click)="setDetails()">edit</button>
+    <div></div>
+</div> -->
+
+<div>
+    <div *ngFor="let student of students"> {{ student.firstName }}
+        <div>
+            <button (click)="toggleDetails(student)">show details</button>
+        </div>
+    </div>
+</div>
+
+<div>
+    <app-student-details *ngIf="showDetails" [student]="selectedStudent"></app-student-details>
+</div>
