@@ -2,9 +2,9 @@ import { Injectable } from "@angular/core";
 import { student } from "./student.model";
 
 const STUDENTS: student[] = [
-    new student(123, "Jasmine", "leni", "USA", "9727272", 98, true),
-    new student(123, "Jesy", "Walword", "Texas", "9727272", 88, true),
-    new student(123, "Sara", "van", "USA", "9727272", 98, false),
+    new student(123, "Jasmine", "leni", "USA", "9727272", 98, true, 'א'),
+    new student(123, "Jesy", "Walword", "Texas", "9727272", 88, true, 'ב'),
+    new student(123, "Sara", "van", "USA", "9727272", 98, false, 'ג'),
 ]
 
 

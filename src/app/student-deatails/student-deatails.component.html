@@ -1,28 +1,56 @@
 <h2>פרטי סטודנט</h2>
 
-<div *ngIf="student">
-    <form>
-        <label>מספר תעודת זהות:</label>
-        <input type="number" [(ngModel)]="student.id" required />
-
+<div *ngIf="student" style="display: flex; flex-direction: column; justify-self: center; align-items: center;">
+    <form (ngSubmit)="saveStudent()" #studentForm="ngForm">
         <label>שם פרטי:</label>
-        <input type="text" [(ngModel)]="student.firstName" required />
+        <input type="text" [(ngModel)]="student.firstName" name="firstName" required #firstName="ngModel" />
+        <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="error-message">
+            שם פרטי הוא שדה חובה
+        </div>
 
         <label>שם משפחה:</label>
-        <input type="text" [(ngModel)]="student.lastName" required />
+        <input type="text" [(ngModel)]="student.lastName" name="lastName" required #lastName="ngModel" />
+        <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="error-message">
+            שם משפחה הוא שדה חובה
+        </div>
 
         <label>כתובת:</label>
-        <input type="text" [(ngModel)]="student.addres" required />
+        <input type="text" [(ngModel)]="student.addres" name="addres" required #address="ngModel" />
+        <div *ngIf="address.invalid && (address.dirty || address.touched)" class="error-message">
+            כתובת היא שדה חובה
+        </div>
+
+        <label>מספר תעודת זהות:</label>
+        <input type="number" [(ngModel)]="student.id" name="id" required #id="ngModel" />
+        <div *ngIf="id.invalid && (id.dirty || id.touched)" class="error-message">
+            מספר תעודת זהות הוא שדה חובה
+        </div>
 
         <label>טלפון:</label>
-        <input type="number" [(ngModel)]="student.phone" required />
+        <input type="text" [(ngModel)]="student.phone" name="phone" required #phone="ngModel" />
+        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error-message">
+            טלפון הוא שדה חובה
+        </div>
 
         <label>פעיל:</label>
-        <input type="checkbox" [(ngModel)]="student.active" />
+        <input type="checkbox" [(ngModel)]="student.active" name="active" />
 
         <label>ממוצע ציונים:</label>
-        <input type="number" [(ngModel)]="student.avgMarks" required />
+        <input type="number" [(ngModel)]="student.avgMarks" name="avgMarks" required #avgMarks="ngModel" />
+        <div *ngIf="avgMarks.invalid && (avgMarks.dirty || avgMarks.touched)" class="error-message">
+            ממוצע ציונים הוא שדה חובה
+        </div>
 
-        <button (submit)="saveStudent()">שמירה</button>
+        <label>א</label>
+        <input type="radio" name="r-year" [(ngModel)]="student.schoolYear" value="א" required #schoolYear="ngModel" />
+        <label>ב</label>
+        <input type="radio" name="r-year" [(ngModel)]="student.schoolYear" value="ב" required />
+        <label>ג</label>
+        <input type="radio" name="r-year" [(ngModel)]="student.schoolYear" value="ג" required />
+
+        <button type="submit">שמירה</button>
     </form>
 </div>
+
+<hr>
+<br>

@@ -1,19 +1,17 @@
-<!-- <div *ngFor="let s of students">
-    <p>{{s.firstName}}</p>
-    <p *ngIf="!s.active">not active</p>
-    <p *ngIf="s.avgMarks > 90"><mark>your marks are higher then the avarage</mark></p>
-    <button (click)="setDetails()">edit</button>
-    <div></div>
-</div> -->
 
-<div>
-    <div *ngFor="let student of students"> {{ student.firstName }}
-        <div>
-            <button (click)="toggleDetails(student)">show details</button>
-        </div>
-    </div>
+<div *ngFor="let student of students"> {{ student.firstName }}
+    <p *ngIf="!student.active">not active</p>
+    <p *ngIf="student.avgMarks > 90"><mark>your marks are higher than the average</mark></p>
+    <button (click)="toggleDetails(student)">show details</button>
+    <button (click)="deleteStudent(student)">delete</button>
+    <hr>
 </div>
+
 
 <div>
     <app-student-details *ngIf="showDetails" [student]="selectedStudent"></app-student-details>
+</div>
+
+<div>
+    <button (click)="addStudent()">add</button>
 </div>

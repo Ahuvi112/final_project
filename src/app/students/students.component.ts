@@ -1,39 +1,26 @@
-/* import { Component, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { student } from './student.model';
+import { StudentsService } from './student.service';
 
 @Component({
   selector: 'app-students',
   templateUrl: './students.component.html',
   styleUrls: ['./students.component.css']
 })
-export class StudentsComponent {
-  students: student[]=[
-    new student(123,'aaa','AAA','aA',"054-45609789",100,true),
-    new student(456,'bbb','BBB','bB',"054-45609789",91,true),
-    new student(789,'ccc','CCC','cC',"054-45609789",80,false)
-  ]
-  isClick:boolean=false;
-  setDetails(){
-    console.log("hello");
+
+export class StudentsComponent implements OnInit {
+  students: student[] = [];
+  constructor(private studentService: StudentsService) { }
+
+  ngOnInit(): void {
+    this.fetchStudents();
   }
-} */
 
-
-import { Component } from '@angular/core';
-import { student } from './student.model';
-
-@Component({
-  selector: 'app-students',
-  templateUrl: './students.component.html',
-  styleUrls: ['./students.component.css']
-})
-
-export class StudentsComponent {
-  students: student[] = [
-    new student(123, 'aaa', 'AAA', 'aA', "054-45609789", 100, true),
-    new student(456, 'bbb', 'BBB', 'bB', "054-45609789", 91, true),
-    new student(789, 'ccc', 'CCC', 'cC', "054-45609789", 80, false)
-  ]; // Assuming you have an array of Student objects
+  fetchStudents(): void {
+    this.studentService.getAll().then(students => {
+      this.students = students;
+    });
+  }
 
   showDetails = false;
   selectedStudent: student | undefined;
@@ -42,4 +29,22 @@ export class StudentsComponent {
     this.showDetails = !this.showDetails;
     this.selectedStudent = student;
   }
+
+  onStudentSaved(updatedStudent: student) {
+    const index = this.students.findIndex(student => student.id === updatedStudent.id);
+    if (index !== -1) {
+      this.students[index] = updatedStudent;
+    }
+  }
+
+  deleteStudent(student: student) {
+    this.students = this.students.filter(s => s !== student);
+  }
+
+  addStudent() {
+    this.students.push(new student(0, '', '', '', '', 0, false, ''));
+    this.showDetails = !this.showDetails;
+    this.selectedStudent = this.students[this.students.length - 1];
+  }
+
 }
